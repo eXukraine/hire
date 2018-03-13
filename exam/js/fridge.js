@@ -29,20 +29,27 @@ class Fridge extends Smarthome {
 		console.log('Close');
 	}
 
-	setTemp(temp){
-		if(temp <= 6){
-			this.temp = temp;
+	increseTemp(){
+		if(this.temp < 6){
+			return this.temp++;
 		}
 		else{
 			console.log("Вы превысили показания по температуре")
 		}
 	}
-	setTemp2(temp2){
-		if((temp2 < -18) && (temp2 > -24)){
-			this.temp2 = temp2;
+
+	decreseTemp() {
+		if(this.temp > 4){
+		return this.temp--}
+	}
+	increseTemp2(){
+		if(this.temp2 > -24){
+			return this.temp2--;
 		}
-		else{
-			console.log("Вы превысили показания по температуре")
+	}
+	decreseTemp2() {
+		if (this.temp2 < -18){
+			return this.temp2++
 		}
 	}
 

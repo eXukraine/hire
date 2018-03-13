@@ -1,0 +1,40 @@
+
+p {
+	margin: 0;
+	padding: 0;
+}
+input {
+	margin: 0 10px 0 10px;
+	width: 200px;
+}
+.submitBtn {
+	margin: 0 auto;
+}
+
+.rootDiv {
+	margin: 25px;
+	float: left;
+	border: 1px solid gray;
+	padding: 10px;
+	line-height: 1.4;
+	background-color: #D3D3D3;
+	width: 200px;
+}
+.on {
+	background-color: green;
+}
+.off {
+	background-color: red;
+}
+
+
+.dellBtn {
+	margin-left: 60%;
+	background-image: url(../img/x.png);
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 30px;
+
+	transition: background-image: url(../img/x/png), rotate 90deg, 1s;
+
+}

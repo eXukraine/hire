@@ -1,8 +1,10 @@
-class Fridge extends Smarthome {
-	constructor(temp, temp2) {
-		super()
+class Fridge  {
+	constructor(model, type, temp, temp2, state) {
+		this.model = model;
+		this.type = type;
 		this.temp = temp;
 		this.temp2 = temp2;
+		this.state = false;
 
 		}
 	get on() {

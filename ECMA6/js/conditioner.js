@@ -1,9 +1,11 @@
-class Conditioner extends Smarthome{
-	constructor(temp, windState) {
-		super();
+class Conditioner{
+	constructor(model, type, temp, windState) {
+		this.model = model;
+		this.type = type;
 		this.temp = temp;
 		this.windState = false;
 	}
+
 								//Включение
 	get on() {
 		this.state = true;

@@ -49,7 +49,7 @@ let dev = new Smarthome;
 
 	submitBtnClick.addEventListener("click",(event)=> {
 		validation()
-		rootElem.innerHTML = "";
+		//rootElem.innerHTML = "";
 		rend()
 		clearHtml()
 		event.preventDefault()
@@ -79,8 +79,8 @@ let validation = function(){
 
 
 let rend = function() {
-	for(let i = 0; i < dev.devise.length; i++){
 		function render() {
+			let i = dev.devise.length-1
 			let targetItem = document.createElement('div');
 				targetItem.innerHTML = "";
 				targetItem.className = "rootDiv";
@@ -215,7 +215,7 @@ let rend = function() {
 
 		render()
 
-	}
+	
 }
 
 

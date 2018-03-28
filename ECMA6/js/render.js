@@ -49,7 +49,7 @@ let dev = new Smarthome;
 
 	submitBtnClick.addEventListener("click",(event)=> {
 		validation()
-		rootElem.innerHTML = "";
+		//rootElem.innerHTML = "";
 		rend()
 		clearHtml()
 		event.preventDefault()
@@ -80,8 +80,10 @@ let validation = function(){
 
 
 let rend = function() {
-	for(let i = 0; i < dev.devise.length; i++){
+	
 		function render() {
+			let i = dev.devise.length-1
+
 			let targetItem = document.createElement('div');
 				targetItem.innerHTML = "";
 				targetItem.className = "rootDiv";
@@ -120,11 +122,19 @@ let rend = function() {
 				dellBtn.addEventListener('click', () => targetItem.innerHTML = "")
 				dellBtn.addEventListener('click', () => rootElem.innerHTML = "" )
 				
-				dellBtn.addEventListener('click', function() {
+/*				dellBtn.addEventListener('click', function() {
+					let dellIndex = dev.devise.indexOf(dev.devise[i]);
+						console.log(dellIndex)
+						dev.devise.splice(dellIndex,1)
+					})*/
+				dellBtn.addEventListener('click', () => {
 					let dellIndex = dev.devise.indexOf(dev.devise[i]);
 						dev.devise.splice(dellIndex,1)
-					})
-				dellBtn.addEventListener('click', () => rend())
+						
+
+					
+				})
+				dellBtn.addEventListener('click', () => render())
 
 
 						// Включение
@@ -212,11 +222,11 @@ let rend = function() {
 				targetItem.appendChild(dellBtn)
 				rootElem.appendChild(targetItem);
 
-			}
+		}
 
 		render()
 
-	}
+	
 }
 
 

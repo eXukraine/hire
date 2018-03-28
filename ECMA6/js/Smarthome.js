@@ -24,6 +24,11 @@ class Smarthome {
 
 
 	};
+
+	dellDevise(){
+		
+	}
+
 	get boilers(){
 		for(let i = 0; i < this.devise.length; i++){
 			if(this.devise[i].type === "Boiler"){

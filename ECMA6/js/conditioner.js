@@ -12,7 +12,7 @@ class Conditioner{
 		this.temp = 16;
 		console.log('ON')
 		this.windState = 45;
-		return  this.state;
+		this.state;
 	};
 								//Выключение
 	get off() {

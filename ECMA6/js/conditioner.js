@@ -3,7 +3,7 @@ class Conditioner{
 		this.model = model;
 		this.type = type;
 		this.temp = temp;
-		this.windState = false;
+		this.windState = undefined;
 	}
 
 								//Включение
@@ -12,7 +12,6 @@ class Conditioner{
 		this.temp = 16;
 		console.log('ON')
 		this.windState = 45;
-		this.state;
 	};
 								//Выключение
 	get off() {
@@ -20,7 +19,6 @@ class Conditioner{
 		this.state = false;
 		this.windState = false;
 		console.log('OFF')
-		return this.state
 	};
 
 								//Увиличение температуры

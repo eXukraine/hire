@@ -25,18 +25,24 @@ class Smarthome {
 
 	};
 
-	dellDevise(){
-		
-	}
 
-	get boilers(){
+
+	dellDevise(){
+
+			let dellIndex = dev.devise.indexOf(dev.devise[i]);
+				console.log(dellIndex)
+				dev.devise.splice(dellIndex,1)
+		
+	};
+
+	boilers(){
 		for(let i = 0; i < this.devise.length; i++){
 			if(this.devise[i].type === "Boiler"){
 				console.log (this.devise[i])
 			}
 		}
 	}
-	get conds(){
+	conds(){
 		for(let i = 0; i < this.devise.length; i++){
 			if(this.devise[i].type === "Conditioner"){
 				console.log (this.devise[i])

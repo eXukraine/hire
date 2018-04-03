@@ -45,14 +45,18 @@ let inp = document.getElementById('select');
 let model = document.getElementById('model');
 let type = inp;
 let dev = new Smarthome;
-
+let devId = 0;
 
 	submitBtnClick.addEventListener("click",(event)=> {
 		validation()
-		//rootElem.innerHTML = "";
+		rootElem.innerHTML = "";
 		rend()
 		clearHtml()
 		event.preventDefault()
+			for(let i = 1; i < dev.devise.length; i++){
+				dev.devise[i].Id = i		
+			}
+				
 })
 
 
@@ -68,6 +72,7 @@ let validation = function(){
 	}
 	else if (inp.value == "Conditioner"){
 		dev.createConditioner(model.value, type.value)
+
 	}
 	else if (inp.value == "Boiler") {
 		dev.createBoiler(model.value, type.value)
@@ -79,29 +84,49 @@ let validation = function(){
 
 
 let rend = function() {
+	for(let i = 0; i < dev.devise.length; i++){
+
 		function render() {
-			let i = dev.devise.length-1
+			
+
 			let targetItem = document.createElement('div');
 				targetItem.innerHTML = "";
 				targetItem.className = "rootDiv";
 				targetItem.style = "background-color: #FF4500";
 
 			let temp = document.createElement('div');
-				temp.innerText = `Температура: 0`;
+				if(dev.devise[i].temp !== undefined){
+					temp.innerText = `Температура: ${dev.devise[i].temp}`
+				}else{
+					temp.innerText = `Температура: 0`;
+				}
 
 			let temp2 = document.createElement('div');
 				temp2.innerText = 'Температура морозильной камеры: 0';
+				if(dev.devise[i].temp2 !== undefined){
+					temp2.innerText = `Температура морозильной камеры: ${dev.devise[i].temp2}`
+				}else{
+					temp2.innerText = `Температура морозильной камеры: 0`;
+				}
 
 			let windState = document.createElement('div');
-				windState.innerText = `Жалюзи: закрыты`;
+				if(dev.devise[i].windState === undefined){
+					windState.innerText = `Жалюзи: закрыты`;
+				}else{
+					windState.innerText = `Жалюзи: ${dev.devise[i].windState} градусов`;
+				}
 
 			let stateV = dev.devise[i].state;
 
 			let stateValue = document.createElement('p');
 
 			let stateItem = document.createElement('div');
-				stateItem.innerText = `Состояние: Выкл.`;
-				stateItem.appendChild(stateValue);
+				if(dev.devise[i].state === true){
+					stateItem.innerText = `Состояние: Вкл.`;
+					targetItem.style = "background-color: #90EE90"
+				}else{
+					stateItem.innerText = `Состояние: Выкл.`;
+				}
 				
 			
 
@@ -116,13 +141,18 @@ let rend = function() {
 
 			let dellBtn = document.createElement('button');
 				dellBtn.className = 'dellBtn'
-				dellBtn.addEventListener('click', () => targetItem.innerHTML = "")
-				dellBtn.addEventListener('click', () => rootElem.innerHTML = "" )
 				
-				dellBtn.addEventListener('click', function() {
+				dellBtn.addEventListener('click', () => rootElem.innerHTML = "" )
+				dellBtn.addEventListener('click', () => targetItem.innerHTML = "")
+				
+				dellBtn.addEventListener('click', () => dev.devise[i].deleteDevise()/*function() {
 					let dellIndex = dev.devise.indexOf(dev.devise[i]);
+						console.log(dellIndex)
 						dev.devise.splice(dellIndex,1)
-					})
+					}*/)
+				
+
+				//dellBtn.addEventListener('click', () => dev.devise[i].dellDevise())
 				dellBtn.addEventListener('click', () => rend())
 
 
@@ -132,10 +162,11 @@ let rend = function() {
 				onBtn.className = 'on'
 				onBtn.addEventListener('click', () => dev.devise[i].on())
 				onBtn.addEventListener('click', () => {if (dev.devise[i].state === true){
-					stateItem.innerText = `Состояние: ${stateV?'Выкл.':'Вкл.'}`;
+					stateItem.innerText = `Состояние: Вкл.`;
 					targetItem.style = "background-color: #90EE90"
 					}
 				})
+				onBtn.addEventListener('click', () => console.log(stateV))
 
 				onBtn.addEventListener('click', () => temp.innerText = `Температура: ${dev.devise[i].temp}`)
 				onBtn.addEventListener('click', () => windState.innerText = `Жалюзи: ${dev.devise[i].windState} градусов`) 
@@ -191,7 +222,6 @@ let rend = function() {
 				targetItem.appendChild(item);
 				targetItem.appendChild(model);
 				targetItem.appendChild(stateItem);
-				stateItem.appendChild(stateValue)
 				targetItem.appendChild(onBtn);
 				targetItem.appendChild(offBtn);
 					if (dev.devise[i].type == "Conditioner"){
@@ -211,11 +241,10 @@ let rend = function() {
 				targetItem.appendChild(dellBtn)
 				rootElem.appendChild(targetItem);
 
-			}
-
+		}
 		render()
+	}
 
-	
 }
 
 

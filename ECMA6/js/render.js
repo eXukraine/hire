@@ -104,9 +104,9 @@ let rend = function() {
 			let temp2 = document.createElement('div');
 				temp2.innerText = 'Температура морозильной камеры: 0';
 				if(dev.devise[i].temp2 !== undefined){
-					temp2.innerText = `Температура: ${dev.devise[i].temp2}`
+					temp2.innerText = `Температура морозильной камеры: ${dev.devise[i].temp2}`
 				}else{
-					temp2.innerText = `Температура: 0`;
+					temp2.innerText = `Температура морозильной камеры: 0`;
 				}
 
 			let windState = document.createElement('div');
@@ -128,7 +128,7 @@ let rend = function() {
 					stateItem.innerText = `Состояние: Выкл.`;
 				}
 				
-			
+			let devI = dev.devise[i]
 
 			let model = document.createElement('div');
 				model.innerText = `Model: ${dev.devise[i].model}`;
@@ -138,18 +138,14 @@ let rend = function() {
 				item.innerText = `Type: ${dev.devise[i].type}`;
 
 						//Удаление 
-
+			let dInd = dev.devise.indexOf(dev.devise[i])
 			let dellBtn = document.createElement('button');
 				dellBtn.className = 'dellBtn'
 				
 				dellBtn.addEventListener('click', () => rootElem.innerHTML = "" )
 				dellBtn.addEventListener('click', () => targetItem.innerHTML = "")
 				
-				dellBtn.addEventListener('click', function() {
-					let dellIndex = dev.devise.indexOf(dev.devise[i]);
-						console.log(dellIndex)
-						dev.devise.splice(dellIndex,1)
-					})
+				dellBtn.addEventListener('click', () => dev.deleteDevise(dInd))
 				
 
 				//dellBtn.addEventListener('click', () => dev.devise[i].dellDevise())
@@ -160,7 +156,7 @@ let rend = function() {
 			let onBtn = document.createElement('button');
 				onBtn.innerText = 'On';
 				onBtn.className = 'on'
-				onBtn.addEventListener('click', () => dev.devise[i].on)
+				onBtn.addEventListener('click', () => dev.on(devI))
 				onBtn.addEventListener('click', () => {if (dev.devise[i].state === true){
 					stateItem.innerText = `Состояние: ${stateV?'Выкл.':'Вкл.'}`;
 					targetItem.style = "background-color: #90EE90"
@@ -176,7 +172,7 @@ let rend = function() {
 			let offBtn = document.createElement('button');
 				offBtn.innerText = "Off";
 				offBtn.className = 'off'
-				offBtn.addEventListener('click', () => dev.devise[i].off)
+				offBtn.addEventListener('click', () => dev.off(devI))
 				offBtn.addEventListener('click', () => {if (dev.devise[i].state === false){
 					stateItem.innerText = `Состояние: Выкл.`;
 					targetItem.style = "background-color: #FF4500"
@@ -199,12 +195,12 @@ let rend = function() {
 
 			let tempUp = document.createElement('button');
 				tempUp.innerText = '+';
-				tempUp.addEventListener('click', () => dev.devise[i].increseTemp())
+				tempUp.addEventListener('click', () => dev.increseTemp(devI))
 				tempUp.addEventListener('click', () => temp.innerText = `Температура: ${dev.devise[i].temp}`)
 
 			let tempDwn = document.createElement('button');
 				tempDwn.innerText = '-';
-				tempDwn.addEventListener('click', () => dev.devise[i].decreseTemp())
+				tempDwn.addEventListener('click', () => dev.decreseTemp(devI))
 				tempDwn.addEventListener('click', () => temp.innerText = `Температура: ${dev.devise[i].temp}`)
 
 			let tempUp2 = document.createElement('button');

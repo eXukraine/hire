@@ -1,7 +1,7 @@
-function Fridge(model, type, temp, temp2, state){
+function Fridge(model, type, temp, temp2){
 	this.model = model;
 	this.type = type;
-	this.state = state;
+	this.state = false;
 	this.temp = 0;
 	this.temp2 = 0;
 

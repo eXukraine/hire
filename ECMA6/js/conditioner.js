@@ -6,39 +6,6 @@ class Conditioner{
 		this.windState = undefined;
 	}
 
-								//Включение
-	get on() {
-		this.state = true;
-		this.temp = 16;
-		console.log('ON')
-		this.windState = 45;
-	};
-								//Выключение
-	get off() {
-		this.temp = false;
-		this.state = false;
-		this.windState = false;
-		console.log('OFF')
-	};
-
-								//Увиличение температуры
-
-    increseTemp(){
-    	if(this.temp < 30){
-		return this.temp++}
-	}	
-
-								//Уменьшение температуры
-
-	decreseTemp() {
-		if(this.temp > 16){
-		return this.temp--}
-	}
-
-								//Установк направления воздуха
-
-								//Открыть
-
 	windUp() {
 
 	if(this.windState < 90){

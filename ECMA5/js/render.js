@@ -45,21 +45,24 @@ let inp = document.getElementById('select');
 let model = document.getElementById('model');
 let type = inp;
 let dev = new Smarthome;
-let devId = 0;
+
 
 	submitBtnClick.addEventListener("click",(event)=> {
 		validation()
+		addId()
 		rootElem.innerHTML = "";
 		rend()
 		clearHtml()
 		event.preventDefault()
-			for(let i = 1; i < dev.devise.length; i++){
-				dev.devise[i].Id = i		
-			}
+		
 				
 })
 
-
+let addId = function(){
+	for(let i = 0; i < dev.devise.length; i++){
+			dev.devise[i].Id = i  ;	
+		}
+}
 let clearHtml = function(){
 	inp.value = "";
 	model.value = "";
@@ -116,16 +119,18 @@ let rend = function() {
 					windState.innerText = `Жалюзи: ${dev.devise[i].windState} градусов`;
 				}
 
-			let stateV = dev.devise[i].state;
 
 			let stateValue = document.createElement('p');
 
+					let deviseI = dev.devise[i]
+
 			let stateItem = document.createElement('div');
-				if(dev.devise[i].state === true){
+				if(dev.devise[i].state === false){
+					stateItem.innerText = `Состояние: Выкл.`;
+					
+				}else{
 					stateItem.innerText = `Состояние: Вкл.`;
 					targetItem.style = "background-color: #90EE90"
-				}else{
-					stateItem.innerText = `Состояние: Выкл.`;
 				}
 				
 			
@@ -144,15 +149,11 @@ let rend = function() {
 				
 				dellBtn.addEventListener('click', () => rootElem.innerHTML = "" )
 				dellBtn.addEventListener('click', () => targetItem.innerHTML = "")
-				
-				dellBtn.addEventListener('click', () => dev.devise[i].deleteDevise()/*function() {
-					let dellIndex = dev.devise.indexOf(dev.devise[i]);
-						console.log(dellIndex)
-						dev.devise.splice(dellIndex,1)
-					}*/)
+								//dellBtn.addEventListener('click', () => console.log(dev.devise[i].Id))
+								let dInd = dev.devise.indexOf(dev.devise[i])
+				dellBtn.addEventListener('click', () => dev.deleteDevise(dInd))
 				
 
-				//dellBtn.addEventListener('click', () => dev.devise[i].dellDevise())
 				dellBtn.addEventListener('click', () => rend())
 
 
@@ -160,13 +161,12 @@ let rend = function() {
 			let onBtn = document.createElement('button');
 				onBtn.innerText = 'On';
 				onBtn.className = 'on'
-				onBtn.addEventListener('click', () => dev.devise[i].on())
+				onBtn.addEventListener('click', () => dev.on(deviseI))
 				onBtn.addEventListener('click', () => {if (dev.devise[i].state === true){
 					stateItem.innerText = `Состояние: Вкл.`;
 					targetItem.style = "background-color: #90EE90"
 					}
 				})
-				onBtn.addEventListener('click', () => console.log(stateV))
 
 				onBtn.addEventListener('click', () => temp.innerText = `Температура: ${dev.devise[i].temp}`)
 				onBtn.addEventListener('click', () => windState.innerText = `Жалюзи: ${dev.devise[i].windState} градусов`) 
@@ -177,7 +177,7 @@ let rend = function() {
 			let offBtn = document.createElement('button');
 				offBtn.innerText = "Off";
 				offBtn.className = 'off'
-				offBtn.addEventListener('click', () => dev.devise[i].off())
+				offBtn.addEventListener('click', () => dev.off(deviseI))
 				offBtn.addEventListener('click', () => {if (dev.devise[i].state === false){
 					stateItem.innerText = `Состояние: Выкл.`;
 					targetItem.style = "background-color: #FF4500"
@@ -189,33 +189,33 @@ let rend = function() {
 
 			let windUpBtn = document.createElement('button');
 				windUpBtn.innerText = 'Up';
-				windUpBtn.addEventListener('click', () => dev.devise[i].windStateDwn());
+				windUpBtn.addEventListener('click', () => dev.devise[i].windStateDwn(deviseI));
 				windUpBtn.addEventListener('click', () => { windState.innerText = `Жалюзи: ${dev.devise[i].windState} градусов`})
 
 			let windDwBtn = document.createElement('button');
 				windDwBtn.innerText = 'Dwn'
-				windDwBtn.addEventListener('click', () => dev.devise[i].windStateUp())
+				windDwBtn.addEventListener('click', () => dev.devise[i].windStateUp(deviseI))
 				windDwBtn.addEventListener('click', () => { windState.innerText = `Жалюзи: ${dev.devise[i].windState} градусов`})
 
 
 			let tempUp = document.createElement('button');
 				tempUp.innerText = '+';
-				tempUp.addEventListener('click', () => dev.devise[i].increaseTemp())
+				tempUp.addEventListener('click', () => dev.increaseTemp(deviseI))
 				tempUp.addEventListener('click', () => temp.innerText = `Температура: ${dev.devise[i].temp}`)
 
 			let tempDwn = document.createElement('button');
 				tempDwn.innerText = '-';
-				tempDwn.addEventListener('click', () => dev.devise[i].decreaseTemp())
+				tempDwn.addEventListener('click', () => dev.decreaseTemp(deviseI))
 				tempDwn.addEventListener('click', () => temp.innerText = `Температура: ${dev.devise[i].temp}`)
 
 			let tempUp2 = document.createElement('button');
 				tempUp2.innerText = '+';
-				tempUp2.addEventListener('click', () => dev.devise[i].increaseTemp2())
+				tempUp2.addEventListener('click', () => dev.devise[i].increaseTemp2(deviseI))
 				tempUp2.addEventListener('click', () => temp2.innerText = `Температура морозильной камеры: ${dev.devise[i].temp2}`)
 
 			let temp2Dwn = document.createElement('button');
 				temp2Dwn.innerText = '-';
-				temp2Dwn.addEventListener('click', () => dev.devise[i].decreaseTemp2())
+				temp2Dwn.addEventListener('click', () => dev.devise[i].decreaseTemp2(deviseI))
 				temp2Dwn.addEventListener('click', () => temp2.innerText = `Температура морозильной камеры: ${dev.devise[i].temp2}`)
 
 

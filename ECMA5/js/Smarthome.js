@@ -15,74 +15,79 @@ function Smarthome(){
 
 }
 
-Smarthome.prototype.__proto__.deleteDevise = function(){
-	let dellIndex = this.Id;
-						console.log(dellIndex)
-						console.log(this)
-						dev.devise.splice(dellIndex,1)
-						//console.log(this)
+Smarthome.prototype.deleteDevise = function(dInd){
 
-					
-}
-Smarthome.prototype.__proto__.on = function(){
-	if(this.type === "Boiler"){
-		this.temp = 60
-	}else if(this.type ==='Conditioner'){
-		this.temp = 16
-	}else if (this.type === 'Fridge'){
-		this.temp = 4
-		this.temp2 = -18
-	}
-
-	this.state = true;
-	this.windState = 15;
+			this.devise.splice(dInd,1)												
 }
 
-Smarthome.prototype.__proto__.off = function(){
-	this.state = false;
-	this.temp = 0;
-	this.windState = 0;
-	this.temp2 = 0
+Smarthome.prototype.on = function(deviseI){
+
+	
+		if(deviseI.type === "Boiler"){
+			deviseI.temp = 60
+			deviseI.state = true;
+		}else if(deviseI.type ==='Conditioner'){
+			deviseI.temp = 16
+			deviseI.state = true;
+			deviseI.windState = 15;
+		}else if (deviseI.type === 'Fridge'){
+			deviseI.temp = 4
+			deviseI.temp2 = -18
+			deviseI.state = true;
+		}
+	
+
+	
+	
 }
 
-Smarthome.prototype.__proto__.increaseTemp = function(){
-	if(this.type === 'Fridge'){
-		if(this.temp < 6){
-		this.temp++
-		return this.temp 
-		}
-	}
-	if(this.type === 'Conditioner'){
-		if(this.temp < 30){
-			this.temp++
-			return this.temp
-		}
-	}
-	if(this.type === 'Boiler'){
-		if(this.temp < 80){
-			this.temp = this.temp + 5
-			return this.temp
-		}
-	}
+Smarthome.prototype.off = function(deviseI){
+
+		deviseI.state = false;
+		deviseI.temp = 0;
+		deviseI.windState = 0;
+		deviseI.temp2 = 0
+	
 }
-Smarthome.prototype.__proto__.decreaseTemp = function(){
-	if(this.type === 'Conditioner'){
-		if(this.temp > 16){
-			this.temp--
-			return this.temp
+
+Smarthome.prototype.increaseTemp = function(deviseI){
+		if(deviseI.type === 'Fridge'){
+			if(deviseI.temp < 6){
+			deviseI.temp++
+			return deviseI.temp 
+			}
 		}
-	}
-	if(this.type === 'Fridge'){
-		if(this.temp > 4){
-			this.temp--
-			return this.temp
+		if(deviseI.type === 'Conditioner'){
+			if(deviseI.temp < 30){
+				deviseI.temp++
+			}
 		}
-	}
-	if(this.type === 'Boiler'){
-		if(this.temp > 50){
-			this.temp = this.temp - 5
-			return this.temp
+		if(deviseI.type === 'Boiler'){
+			if(deviseI.temp < 80){
+				deviseI.temp = deviseI.temp + 5
+				return deviseI.temp
+			}
 		}
-	}
+	
+}
+Smarthome.prototype.decreaseTemp = function(deviseI){
+		if(deviseI.type === 'Conditioner'){
+			if(deviseI.temp > 16){
+				deviseI.temp--
+				return deviseI.temp
+			}
+		}
+		if(deviseI.type === 'Fridge'){
+			if(deviseI.temp > 4){
+				deviseI.temp--
+				return deviseI.temp
+			}
+		}
+		if(deviseI.type === 'Boiler'){
+			if(deviseI.temp > 50){
+				deviseI.temp = deviseI.temp - 5
+				return deviseI.temp
+			}
+		}
 }
 

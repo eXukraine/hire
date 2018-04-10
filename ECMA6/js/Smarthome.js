@@ -15,14 +15,6 @@ class Smarthome {
 	}
 
 
-	fridges(){
-		for(let i = 0; i < this.devise.length; i++){
-			if(this.devise[i].type === "Fridge"){
-				console.log (this.devise[i])
-			}
-		}
-	}
-
 
 
 	deleteDevise(dInd){
@@ -102,43 +94,25 @@ class Smarthome {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+						//Работает но не используется
 
 
 	boilers(){
 		for(let i = 0; i < this.devise.length; i++){
 			if(this.devise[i].type === "Boiler"){
-				console.log (this.devise[i])
+			}
+		}
+	}
+	fridges(){
+		for(let i = 0; i < this.devise.length; i++){
+			if(this.devise[i].type === "Fridge"){
+
 			}
 		}
 	}
 	conds(){
 		for(let i = 0; i < this.devise.length; i++){
 			if(this.devise[i].type === "Conditioner"){
-				console.log (this.devise[i])
 			}
 		}
 	}

@@ -31,7 +31,6 @@ function CreateDeviseForm(){
 
 		form.appendChild(select);
 		form.appendChild(model);
-		//form.appendChild(type);
 		form.appendChild(submitBtn);
 		rootElem.appendChild(form)
 
@@ -148,7 +147,6 @@ let rend = function() {
 				dellBtn.addEventListener('click', () => dev.deleteDevise(dInd))
 				
 
-				//dellBtn.addEventListener('click', () => dev.devise[i].dellDevise())
 				dellBtn.addEventListener('click', () => rend())
 
 
